@@ -4,6 +4,31 @@ import { guitarData } from './data/data';
 
 function App() {
   const [data, setData] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  /**
+   * Adds an item to the shopping cart.
+   * If the item already exists in the cart, it increments the quantity of that item.
+   * If the item is not in the cart, it adds it to the cart with an initial quantity of 1.
+   *
+   * @param {Object} item - The item to add to the cart.
+   * @param {number} item.id - The unique identifier for the item.
+   * @param {number} [item.quantity] - The quantity of the item.
+   *
+   * @returns {void}
+   */
+  const addToCart = item => {
+    const itemInCart = cart.findIndex(cartItem => cartItem.id === item.id);
+
+    if (itemInCart >= 0) {
+      const updatedCart = [...cart];
+      updatedCart[itemInCart].quantity++;
+      setCart(updatedCart);
+    } else {
+      item.quantity = 1;
+      setCart([...cart, item]);
+    }
+  };
 
   useEffect(() => {
     setData(guitarData);
@@ -17,7 +42,12 @@ function App() {
         <div className='row mt-5'>
           {/* Guitars */}
           {data.map(guitar => (
-            <Guitar key={guitar.id} guitar={guitar} />
+            <Guitar
+              key={guitar.id}
+              guitar={guitar}
+              setCart={setCart}
+              addToCart={addToCart}
+            />
           ))}
         </div>
       </main>
