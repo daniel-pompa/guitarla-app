@@ -78,6 +78,11 @@ function App() {
     setCart(itemInCart);
   };
 
+  /** Removes all items from the cart. */
+  const clearCart = () => {
+    setCart([]);
+  };
+
   useEffect(() => {
     setData(guitarData);
   }, []);
@@ -89,6 +94,7 @@ function App() {
         removeFromCart={removeFromCart}
         increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
+        clearCart={clearCart}
       />
       <main className='container-xl mt-5'>
         <h2 className='text-center fs-1 fw-bold text-uppercase'>Nuestra Colección</h2>
