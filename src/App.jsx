@@ -6,6 +6,9 @@ function App() {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
 
+  const MAX_ITEM_QUANTITY = 5;
+  const MIN_ITEM_QUANTITY = 1;
+
   /**
    * Adds an item to the shopping cart.
    * If the item already exists in the cart, it increments the quantity of that item.
@@ -21,6 +24,7 @@ function App() {
     const itemInCart = cart.findIndex(cartItem => cartItem.id === item.id);
 
     if (itemInCart >= 0) {
+      if (cart[itemInCart].quantity >= MAX_ITEM_QUANTITY) return;
       const updatedCart = [...cart];
       updatedCart[itemInCart].quantity++;
       setCart(updatedCart);
@@ -43,13 +47,49 @@ function App() {
     setCart(updatedCart);
   };
 
+  /**
+   * Increases the quantity of an item in the cart by one.
+   *
+   * @param {number|string} id - The unique identifier of the item to increase the quantity of.
+   * @returns {void}
+   */
+  const increaseQuantity = id => {
+    const itemInCart = cart.map(item => {
+      if (item.id === id && item.quantity < MAX_ITEM_QUANTITY) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCart(itemInCart);
+  };
+
+  /**
+   * Decreases the quantity of an item in the cart by one.
+   *
+   * @param {number|string} id - The unique identifier of the item to decrease the quantity of.
+   */
+  const decreaseQuantity = id => {
+    const itemInCart = cart.map(item => {
+      if (item.id === id && item.quantity > MIN_ITEM_QUANTITY) {
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    });
+    setCart(itemInCart);
+  };
+
   useEffect(() => {
     setData(guitarData);
   }, []);
 
   return (
     <>
-      <Header cart={cart} removeFromCart={removeFromCart} />
+      <Header
+        cart={cart}
+        removeFromCart={removeFromCart}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+      />
       <main className='container-xl mt-5'>
         <h2 className='text-center fs-1 fw-bold text-uppercase'>Nuestra Colección</h2>
         <div className='row mt-5'>

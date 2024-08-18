@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 
-export const Header = ({ cart, removeFromCart }) => {
+export const Header = ({ cart, removeFromCart, increaseQuantity, decreaseQuantity }) => {
   // Derived state: Check if the cart is empty
   const isEmpty = useMemo(() => cart.length === 0, [cart]);
 
@@ -65,11 +65,19 @@ export const Header = ({ cart, removeFromCart }) => {
                             <td className='fw-bold'>{item.price}</td>
                             <td>
                               <div className='d-flex align-items-center gap-1'>
-                                <button type='button' className='btn btn-sm btn-primary'>
+                                <button
+                                  type='button'
+                                  className='btn btn-sm btn-primary'
+                                  onClick={() => decreaseQuantity(item.id)}
+                                >
                                   <i className='bi bi-dash'></i>
                                 </button>
                                 <span>{item.quantity}</span>
-                                <button type='button' className='btn btn-sm btn-primary'>
+                                <button
+                                  type='button'
+                                  className='btn btn-sm btn-primary'
+                                  onClick={() => increaseQuantity(item.id)}
+                                >
                                   <i className='bi bi-plus'></i>
                                 </button>
                                 <button
@@ -110,4 +118,6 @@ export const Header = ({ cart, removeFromCart }) => {
 Header.propTypes = {
   cart: PropTypes.array,
   removeFromCart: PropTypes.func.isRequired,
+  increaseQuantity: PropTypes.func.isRequired,
+  decreaseQuantity: PropTypes.func.isRequired,
 };
