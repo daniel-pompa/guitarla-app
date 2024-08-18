@@ -1,8 +1,35 @@
-/* General styling */
+/* Poppins source definition */
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/Poppins-ExtraBold.woff2') format('woff2'),
+    url('./assets/Poppins-ExtraBold.woff') format('woff'),
+    url('./assets/Poppins-ExtraBold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Monserrat source definition */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/Montserrat-ExtraBold.woff2') format('woff2'),
+    url('./assets/Montserrat-ExtraBold.woff') format('woff'),
+    url('./assets/Montserrat-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Global Styles */
 :root {
+  /* Color Variables */
   --primary-color: #1e293b;
   --secondary-color: #d88506;
   --background-color: #f8fafc;
+
+  /* Fallback Font Stack */
+  --font-fallback: Inter, system-ui, Arial, sans-serif;
+  --font-family: 'Montserrat', var(--font-fallback);
 }
 
 body {
@@ -12,6 +39,7 @@ body {
 
 h2 {
   color: var(--secondary-color);
+  font-family: var(--font-family);
 }
 
 /* Header background styling */
