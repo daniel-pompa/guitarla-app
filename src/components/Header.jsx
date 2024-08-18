@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 
-export const Header = ({ cart }) => {
+export const Header = ({ cart, removeFromCart }) => {
   // Derived state: Check if the cart is empty
-  const isEmpty = () => cart.length === 0;
+  const isEmpty = useMemo(() => cart.length === 0, [cart]);
 
   // Derived state: Calculate the total price of all items in the cart
-  const calculateCartTotal = () =>
-    cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  const calculateCartTotal = useMemo(
+    () => cart.reduce((total, item) => total + item.price * item.quantity, 0),
+    [cart]
+  );
 
   return (
     <header className='py-5 header'>
@@ -30,7 +33,7 @@ export const Header = ({ cart }) => {
                 className='bg-white p-3 rounded shadow position-absolute end-0'
               >
                 {/* Cart Items List Empty Message */}
-                {isEmpty() ? (
+                {isEmpty ? (
                   <p className='text-center fs-5'>El carrito está vacío</p>
                 ) : (
                   <>
@@ -69,7 +72,11 @@ export const Header = ({ cart }) => {
                                 <button type='button' className='btn btn-sm btn-primary'>
                                   <i className='bi bi-plus'></i>
                                 </button>
-                                <button className='btn btn-sm btn-danger' type='button'>
+                                <button
+                                  className='btn btn-sm btn-danger'
+                                  type='button'
+                                  onClick={() => removeFromCart(item.id)}
+                                >
                                   <i className='bi bi-trash-fill'></i>
                                 </button>
                               </div>
@@ -80,7 +87,7 @@ export const Header = ({ cart }) => {
                     </table>
                     {/* Total price, empty cart button, and checkout button */}
                     <p className='text-end'>
-                      Total: <span className='fw-bold'>{calculateCartTotal()}€</span>
+                      Total: <span className='fw-bold'>{calculateCartTotal}€</span>
                     </p>
                     <button className='btn btn-sm btn-dark w-100 mt-3 p-2 fw-bold'>
                       Vaciar carrito
@@ -102,4 +109,5 @@ export const Header = ({ cart }) => {
 
 Header.propTypes = {
   cart: PropTypes.array,
+  removeFromCart: PropTypes.func.isRequired,
 };

@@ -30,13 +30,26 @@ function App() {
     }
   };
 
+  /**
+   * Removes an item from the shopping cart by its ID.
+   *
+   * This function filters out the item with the specified ID from the current cart and updates the cart state with the remaining items.
+   *
+   * @param {number|string} id - The ID of the item to be removed from the cart.
+   * @returns {void} This function does not return a value.
+   */
+  const removeFromCart = id => {
+    const updatedCart = cart.filter(item => item.id !== id);
+    setCart(updatedCart);
+  };
+
   useEffect(() => {
     setData(guitarData);
   }, []);
 
   return (
     <>
-      <Header cart={cart} />
+      <Header cart={cart} removeFromCart={removeFromCart} />
       <main className='container-xl mt-5'>
         <h2 className='text-center fs-1 fw-bold text-uppercase'>Nuestra Colección</h2>
         <div className='row mt-5'>
