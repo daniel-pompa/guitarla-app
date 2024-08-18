@@ -1,0 +1,83 @@
+/* General styling */
+:root {
+  --primary-color: #1e293b;
+  --secondary-color: #d88506;
+  --background-color: #f8fafc;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+h2 {
+  color: var(--secondary-color);
+}
+
+/* Header background styling */
+.header {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+    url('/header.jpg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+/* Shopping cart image styling */
+.shopping-cart-image {
+  max-width: 2rem;
+}
+
+/* Shopping cart visibility and styling */
+.cart #cart {
+  display: none;
+}
+
+.cart:hover #cart {
+  display: block;
+  z-index: 1;
+}
+
+#cart img {
+  width: 1.563rem;
+}
+
+.cart #cart .table {
+  font-size: calc(0.8rem + 0.2vw); /* Base size plus a viewport width adjustment */
+}
+
+@media (max-width: 767px) {
+  .cart #cart {
+    right: -0.5rem !important;
+  }
+}
+
+/* Shadow and animation for guitar cards */
+.guitar-card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+}
+
+.guitar-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for price text */
+p.price {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+/* Responsive styling for images in cards on small screens */
+@media (max-width: 767px) {
+  .card img {
+    max-width: 50vw;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+}
