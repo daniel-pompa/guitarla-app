@@ -3,11 +3,24 @@ import { Guitar, Header } from './components';
 import { guitarData } from './data/data';
 
 function App() {
+  const initialCart = () => {
+    const localStorageCart = localStorage.getItem('cart');
+    return localStorageCart ? JSON.parse(localStorageCart) : [];
+  };
+
   const [data, setData] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(initialCart);
 
   const MAX_ITEM_QUANTITY = 5;
   const MIN_ITEM_QUANTITY = 1;
+
+  useEffect(() => {
+    setData(guitarData);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   /**
    * Adds an item to the shopping cart.
@@ -82,10 +95,6 @@ function App() {
   const clearCart = () => {
     setCart([]);
   };
-
-  useEffect(() => {
-    setData(guitarData);
-  }, []);
 
   return (
     <>
