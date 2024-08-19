@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Guitar, Header } from './components';
 import { useCart } from './hooks/useCart';
 
