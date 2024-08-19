@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { PaymentForm } from './PaymentForm';
 
 export const Header = ({
   cart,
@@ -9,6 +11,16 @@ export const Header = ({
   isEmpty,
   calculateCartTotal,
 }) => {
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
+
+  const handlePurchaseClick = () => {
+    setShowPaymentForm(true);
+  };
+
+  const handleCloseForm = () => {
+    setShowPaymentForm(false);
+  };
+
   return (
     <header className='py-5 header'>
       <div className='container-xl'>
@@ -32,12 +44,16 @@ export const Header = ({
               >
                 {/* Cart Items List Empty Message */}
                 {isEmpty ? (
-                  <p className='text-center fs-5'>El carrito está vacío</p>
+                  <div className='text-center fw-bold'>
+                    <p>Tu carrito está vacío</p>
+                    <p>¡Añade algunos productos!</p>
+                  </div>
                 ) : (
                   <>
                     {/* Display the number of items in the cart */}
-                    <p className='text-center fs-5'>
-                      Hay {cart.length} artículos en el carrito
+                    <p className='text-center fw-bold'>
+                      Hay {cart.length} {cart.length === 1 ? 'artículo' : 'artículos'} en
+                      el carrito
                     </p>
                     {/* Render the table with the list of cart items */}
                     <table className='table text-center'>
@@ -101,7 +117,10 @@ export const Header = ({
                     >
                       Vaciar carrito
                     </button>
-                    <button className='btn btn-sm btn-dark w-100 mt-3 p-2 fw-bold'>
+                    <button
+                      className='btn btn-sm btn-dark w-100 mt-3 p-2 fw-bold'
+                      onClick={handlePurchaseClick}
+                    >
                       Realizar compra
                     </button>
                   </>
@@ -112,6 +131,10 @@ export const Header = ({
           {/* End Shopping Cart */}
         </div>
       </div>
+      {/* Render payment form if active */}
+      {showPaymentForm && (
+        <PaymentForm calculateCartTotal={calculateCartTotal} onClose={handleCloseForm} />
+      )}
     </header>
   );
 };
