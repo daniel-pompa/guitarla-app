@@ -70,8 +70,8 @@ h2 {
   width: 1.563rem;
 }
 
-.cart #cart .table {
-  font-size: calc(0.8rem + 0.2vw); /* Base size plus a viewport width adjustment */
+.cart #cart {
+  font-size: calc(0.8rem + 0.2vw);
 }
 
 @media (max-width: 767px) {
@@ -83,7 +83,7 @@ h2 {
 /* Shadow and animation for guitar cards */
 .guitar-card {
   border: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .guitar-card:hover {
@@ -109,4 +109,53 @@ p.price {
   .card {
     padding: 1rem;
   }
+}
+
+/* Payment Form */
+.payment-form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.payment-form-container .card {
+  width: 100%;
+  max-width: 500px;
+}
+
+.payment-form-container .card,
+.payment-form-container .btn,
+.payment-form-container .form-control,
+.payment-form-container ::placeholder {
+  font-size: calc(0.8rem + 0.2vw);
+}
+
+.form-control:focus {
+  border-color: #94a3b8;
+  box-shadow: none;
+}
+
+/* Payment methods */
+.text-mastercard {
+  color: #dc3545;
+}
+
+.text-visa {
+  color: #1a1f71;
+}
+
+.text-amex {
+  color: #43609c;
+}
+
+.text-paypal {
+  color: #003087;
+}
+
+.text-amazon-pay {
+  color: #ff9900;
 }
