@@ -1,5 +1,5 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { Guitar, Header } from './components';
+import { Footer, Guitar, Header } from './components';
 import { useCart } from './hooks/useCart';
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
           ))}
         </div>
       </main>
+      <Footer />
     </>
   );
 }
