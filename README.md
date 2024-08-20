@@ -132,6 +132,7 @@ I would like to extend my sincere thanks to:
 - **[Node.js](https://nodejs.org/en)** for offering a powerful and efficient runtime environment for TypeScript.
 - **[npm](https://www.npmjs.com/)** for being a crucial tool in managing project dependencies and packages.
 - **[Skillicons](https://skillicons.dev/)** for high-quality icons that enhance the visual appeal of this project.
+- **[Font Awesome](https://fontawesome.com/)** for providing the high-quality icons used in the project.
 - **Open Source Community** for the countless resources, tutorials, and tools available that have supported our learning journey.
 
 [Back to Top](#table-of-contents)
